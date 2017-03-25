@@ -1,0 +1,11 @@
+// 不使用annotationProcessor写的router
+include ':normalusage'
+
+// demo
+include ':sample'
+// 注解处理库
+include ':compiler'
+// 注解
+include ':annotation'
+// 路由库
+include ':router'
