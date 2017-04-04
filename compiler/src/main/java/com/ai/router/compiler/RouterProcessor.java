@@ -28,6 +28,8 @@ import javax.lang.model.element.TypeElement;
 import javax.tools.Diagnostic;
 
 // @AutoService(Processor.class) // 生成META-INF等信息
+// @SupportedSourceVersion(SourceVersion.RELEASE_7)
+// @SupportedAnnotationTypes("com.ai.router.anno.Route")
 public class RouterProcessor extends AbstractProcessor {
 
     @Override

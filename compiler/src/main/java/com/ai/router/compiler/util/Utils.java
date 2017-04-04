@@ -14,6 +14,7 @@ import javax.tools.Diagnostic;
 public class Utils {
 
     public static boolean checkTypeValid(Element type) {
+        // Element是不是类，规定Route只能注解到类上面
         if (type.getKind() != ElementKind.CLASS) {
             error(type, "Only classes can be annotated with @%s.", Route.class.getSimpleName());
             return false;
@@ -21,11 +22,14 @@ public class Utils {
         TypeElement element = (TypeElement) type;
         Set<Modifier> modifiers = element.getModifiers();
         if (modifiers.contains(Modifier.PRIVATE)) {
+            // 类是不是private的
             error(element, "The class %s should not be modified by private", element.getSimpleName());
             return false;
         } else if (modifiers.contains(Modifier.ABSTRACT)) {
+            // 类是不是abstract的
             return false;
         } else if (!isSuperClass(element, Constants.CLASSNAME_ACTIVITY)) {
+            // 类是不是activity的子类
             error(element, "The class %s you annotated by %s should be a subclass of Activity",
                     element.getSimpleName(), Route.class.getSimpleName());
             return false;
